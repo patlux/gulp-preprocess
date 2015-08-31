@@ -38,7 +38,7 @@ var preprocess = require('gulp-preprocess');
 
 gulp.task('html', function() {
   gulp.src('./app/*.html')
-    .pipe(preprocess({context: { NODE_ENV: 'production', DEBUG: true}})) //To set environment variables in-line
+    .pipe(preprocess({ NODE_ENV: 'production', DEBUG: true }, { type: 'html' })) //To set environment variables and options in-line
     .pipe(gulp.dest('./dist/'))
 });
 
@@ -83,30 +83,12 @@ someDebuggingCall()
 CoffeeScript files are also supported.
 
 
-#### More Examples
+## API
+
+### preprocess(context, options)
 
 `gulp-preprocess` uses [preprocess](https://github.com/jsoverson/preprocess#directive-syntax). More examples can be found in its [README](https://github.com/jsoverson/preprocess#directive-syntax).
 
-
-## API
-
-### preprocess(options)
-
-#### options.context
-Type: `Object`
-Default: `{}`
-
-Context for directives used in your preprocessed files. The default context consists of the current user environment variables. Custom context is merged with `process.env`.
-
-#### options.includeBase
-Type: `String`
-
-Base directory for included files. By default, the path to included files is relative to the file currently being processed.
-
-#### options.extension
-Type: `String`
-
-Override the file extension. This determines what [regular expressions are used for comments](https://github.com/jsoverson/preprocess/blob/master/lib/regexrules.js). You may wish to do this if you are using a custom extension or need to force a particular comment syntax (for example, to allow HTML-style comments in `.php` files).
 
 ## LICENSE
 
